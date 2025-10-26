@@ -33,6 +33,7 @@
             <div class="nav-links">
                 <a href="/tips.php" class="nav-link">Tips</a>
                 <a href="/login.php" class="nav-link">Login</a>
+                <a href="/register.php" class="btn btn-primary btn-sm">Get Started</a>
             </div>
             <?php endif; ?>
         </div>
