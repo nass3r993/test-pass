@@ -1,0 +1,12 @@
+{
+  "name": "fortipass",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Intentionally vulnerable password manager for security training",
+  "scripts": {
+    "start": "docker compose up",
+    "build": "docker compose build",
+    "stop": "docker compose down",
+    "reset": "docker compose down -v && docker compose up --build"
+  }
+}

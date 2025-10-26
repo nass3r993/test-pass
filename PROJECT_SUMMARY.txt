@@ -1,0 +1,164 @@
+================================================================================
+                            FORTIPASS PROJECT
+                     Intentionally Vulnerable Password Manager
+                      For Educational & Security Training Use
+================================================================================
+
+PROJECT OVERVIEW
+----------------
+FortiPass is a complete, runnable PHP password manager web application that
+appears production-ready but contains six intentional security vulnerabilities
+for educational purposes, CTF competitions, and penetration testing practice.
+
+KEY FEATURES
+------------
+✓ Modern, professional UI design (blue theme, not purple/indigo)
+✓ Complete authentication system with sessions
+✓ Full password management (CRUD operations)
+✓ Password search functionality
+✓ Bulk import (CSV/XML)
+✓ User profile with image upload
+✓ Settings management
+✓ Login history tracking
+✓ Security tips page
+✓ Responsive design
+
+INTENTIONAL VULNERABILITIES (All Documented)
+--------------------------------------------
+1. SQL Injection (SQLi) - Password search functionality
+2. XML External Entity (XXE) - Import feature
+3. File Upload - Allows .phtml files with original names
+4. Directory Listing - Enabled for uploads folder
+5. Server-Side Template Injection (SSTI) - Password name field
+6. Stored Cross-Site Scripting (XSS) - User-Agent in login history
+
+All vulnerabilities are marked with: // INTENTIONAL VULN: <type>
+
+TECHNOLOGY STACK
+----------------
+- PHP 8.2 + Apache
+- MySQL 8.0
+- Docker & Docker Compose
+- Pure CSS (no frameworks)
+- Vanilla JavaScript
+
+GETTING STARTED
+---------------
+1. Run: docker compose up --build
+2. Wait: 30-60 seconds for database initialization
+3. Access: http://localhost:8080
+4. Login: user@example.com / password
+
+FILE STRUCTURE
+--------------
+project/
+├── README.md                    # Main docs with vulnerability PoCs
+├── QUICKSTART.md               # Quick start guide
+├── DEPLOYMENT.md               # Detailed deployment instructions
+├── VERIFICATION.md             # Complete implementation checklist
+├── docker-compose.yml          # Docker orchestration
+├── Dockerfile                  # PHP+Apache container
+├── init.sql                    # Database schema and seeds
+├── src/
+│   ├── config.php             # Core configuration
+│   ├── header.php             # Common header
+│   ├── footer.php             # Common footer
+│   ├── login.php              # Authentication
+│   ├── dashboard.php          # Main dashboard
+│   ├── passwords.php          # Password list (with SQLi)
+│   ├── add-password.php       # Add password (with SSTI)
+│   ├── import.php             # Bulk import (with XXE)
+│   ├── profile.php            # Profile (with file upload vuln)
+│   ├── settings.php           # User settings
+│   ├── login-history.php      # Login logs (with XSS)
+│   ├── tips.php               # Security tips
+│   └── assets/style.css       # Modern styling
+├── uploads/profile_images/    # User uploads (directory listing enabled)
+└── backups/                   # Backup directory
+
+SECURITY COMPLIANCE
+-------------------
+✓ No phone-home or external connections
+✓ Fully offline-capable
+✓ UI appears production-like (no "demo" labels)
+✓ All safety warnings in repository files only
+✓ PoC hints provided (not full exploits)
+✓ Clear educational purpose statements
+
+DEFAULT CREDENTIALS
+-------------------
+Email: user@example.com
+Password: password
+(Pre-seeded with 3 sample passwords)
+
+DOCUMENTATION
+-------------
+- README.md: Complete docs with PoC hints for all vulnerabilities
+- DEPLOYMENT.md: Step-by-step deployment guide
+- QUICKSTART.md: Quick 3-step start guide
+- VERIFICATION.md: Implementation checklist (all requirements met)
+
+IMPORTANT WARNINGS
+------------------
+⚠️ FOR EDUCATIONAL USE ONLY
+⚠️ NEVER DEPLOY TO PRODUCTION
+⚠️ RUN IN ISOLATED ENVIRONMENTS ONLY
+⚠️ DO NOT EXPOSE TO INTERNET
+⚠️ ALL VULNERABILITIES ARE INTENTIONAL
+
+PROJECT STATUS
+--------------
+✅ All 9 required pages implemented
+✅ All 6 vulnerabilities implemented and documented
+✅ Modern, production-like UI design
+✅ Complete Docker setup
+✅ Comprehensive documentation
+✅ Seed data and test credentials
+✅ Ready for deployment in educational environments
+
+TESTING THE VULNERABILITIES
+---------------------------
+Each vulnerability has PoC hints in README.md:
+- SQLi: Search with: ' OR 1=1 --
+- XXE: Upload XML with external entity references
+- File Upload: Upload .phtml files
+- Directory Listing: Browse /uploads/profile_images/
+- SSTI: Use {{system('whoami')}} in password name
+- XSS: Modify User-Agent header during login
+
+LEARNING OUTCOMES
+-----------------
+After exploring this application, users will understand:
+✓ How common web vulnerabilities work
+✓ Why input validation is critical
+✓ The importance of output encoding
+✓ Secure file upload practices
+✓ Proper database query construction
+✓ XML parsing security considerations
+
+NEXT STEPS
+----------
+1. Deploy in isolated environment
+2. Explore the application features
+3. Read README.md for vulnerability details
+4. Practice identifying vulnerabilities
+5. Attempt to exploit each vulnerability safely
+6. Learn secure coding practices to prevent these issues
+
+SUPPORT & TROUBLESHOOTING
+-------------------------
+See DEPLOYMENT.md for:
+- Common issues and solutions
+- Port conflict resolution
+- Database initialization problems
+- Permission errors
+
+RESPONSIBLE USE
+---------------
+This project is designed to teach security concepts through hands-on practice.
+Use it responsibly, ethically, and only in authorized environments. Never use
+these techniques on systems you don't own or have explicit permission to test.
+
+================================================================================
+                         END OF PROJECT SUMMARY
+================================================================================

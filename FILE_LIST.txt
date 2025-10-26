@@ -1,0 +1,139 @@
+================================================================================
+                        FORTIPASS - COMPLETE FILE LIST
+================================================================================
+
+ROOT DIRECTORY
+--------------
+📄 INDEX.md                    - Documentation index and navigation guide
+📄 START_HERE.md              - Entry point, read this first
+📄 QUICKSTART.md              - 3-step quick start guide
+📄 README.md                  - Complete documentation with vulnerability PoCs
+📄 DEPLOYMENT.md              - Detailed deployment instructions
+📄 VERIFICATION.md            - Implementation verification checklist
+📄 PROJECT_SUMMARY.txt        - Quick reference summary
+📄 FILE_LIST.txt              - This file - complete file listing
+
+📄 docker-compose.yml         - Docker orchestration configuration
+📄 Dockerfile                 - PHP+Apache container definition
+📄 init.sql                   - Database schema and seed data
+📄 .htaccess                  - Apache rewrite rules
+📄 package.json               - Project metadata and npm scripts
+📄 .gitignore                 - Git ignore patterns
+
+SOURCE CODE (src/)
+------------------
+📄 config.php                 - Database connection and auth helpers
+📄 header.php                 - Common header template with navigation
+📄 footer.php                 - Common footer template
+
+📄 index.php                  - Entry point / redirect
+📄 login.php                  - Login page ⚠️ VULN: Stores User-Agent (XSS)
+📄 logout.php                 - Logout handler
+
+📄 dashboard.php              - Main dashboard with statistics
+📄 passwords.php              - Password list and search ⚠️ VULN: SQL Injection
+📄 add-password.php           - Add password form ⚠️ VULN: SSTI
+📄 import.php                 - Bulk import (CSV/XML) ⚠️ VULN: XXE
+📄 profile.php                - User profile and upload ⚠️ VULN: File Upload
+📄 settings.php               - Application settings
+📄 login-history.php          - Login activity log ⚠️ VULN: Displays XSS
+📄 tips.php                   - Security tips page (static)
+
+ASSETS (src/assets/)
+--------------------
+📄 style.css                  - Modern, responsive CSS (16KB)
+
+DIRECTORIES
+-----------
+📁 uploads/profile_images/    - User profile image uploads
+                                ⚠️ VULN: Directory listing enabled
+                                Contains: .gitkeep
+
+📁 backups/                   - Backup directory
+                                Contains: .gitkeep
+
+================================================================================
+VULNERABILITY LOCATIONS
+================================================================================
+
+1. SQL INJECTION
+   File: src/passwords.php
+   Line: Search query concatenation
+   Comment: // INTENTIONAL VULN: SQL Injection
+
+2. XXE INJECTION  
+   File: src/import.php
+   Lines: XML parsing in both CSV and XML import
+   Comment: // INTENTIONAL VULN: XXE
+
+3. FILE UPLOAD
+   File: src/profile.php
+   Line: File extension validation and upload
+   Comment: // INTENTIONAL VULN: File Upload
+
+4. DIRECTORY LISTING
+   File: Dockerfile
+   Lines: Apache configuration for uploads/profile_images/
+   Config: Options +Indexes
+
+5. SERVER-SIDE TEMPLATE INJECTION (SSTI)
+   File: src/add-password.php
+   Line: Password name template evaluation
+   Comment: // INTENTIONAL VULN: SSTI
+
+6. STORED CROSS-SITE SCRIPTING (XSS)
+   Storage: src/login.php (saves User-Agent)
+   Display: src/login-history.php (displays User-Agent)
+   Comment: // INTENTIONAL VULN: Stored XSS
+
+================================================================================
+DOCUMENTATION GUIDE
+================================================================================
+
+Read First:
+  → INDEX.md or START_HERE.md
+
+Quick Start:
+  → QUICKSTART.md (5 minutes to deploy)
+
+Complete Info:
+  → README.md (all vulnerabilities explained)
+
+Deployment Help:
+  → DEPLOYMENT.md (troubleshooting guide)
+
+Verification:
+  → VERIFICATION.md (checklist of all features)
+
+Quick Reference:
+  → PROJECT_SUMMARY.txt (one-page overview)
+
+File Reference:
+  → FILE_LIST.txt (this file)
+
+================================================================================
+FILE COUNT SUMMARY
+================================================================================
+
+Documentation:         7 files (.md and .txt)
+Configuration:         5 files (yml, Dockerfile, sql, json, htaccess)
+PHP Source:           14 files (including config, header, footer)
+CSS:                   1 file
+Directories:           4 (src, assets, uploads, backups)
+Total Project Files:  27 files + 4 directories
+
+================================================================================
+DEPLOYMENT COMMANDS
+================================================================================
+
+Start:    docker compose up --build
+Stop:     docker compose down
+Reset:    docker compose down -v && docker compose up --build
+Logs:     docker compose logs -f
+
+Access:   http://localhost:8080
+Login:    user@example.com / password
+
+================================================================================
+                              END OF FILE LIST
+================================================================================
